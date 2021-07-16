@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private CustomUserDetailsService userDetailsService;
 	
 	@Autowired
-	private JwtFilter jwtFilter;  
+	private JwtFilter jwtFilter;    
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 					.permitAll().anyRequest().authenticated()
 					.and().exceptionHandling().and().sessionManagement()
 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.addFilterBefore(null, UsernamePasswordAuthenticationFilter.class);  
+		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);    
 	}
 	
 	
